@@ -21,23 +21,25 @@ function Filter() {
     }
 
     useEffect(() => {
-      dispatch(filterSlice.actions.cityChange(debounce))
+        if (debounce.trim().length > 0) {
+            dispatch(filterSlice.actions.cityChange(debounce))
+        }
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debounce])
     
 
   return (
-    <div id="filter">
-        <div className={clsx(styles.cityWrapper, 'flex')}>
-            <span className="">Your city: </span>
-            <input type="text" className="" value={citySearch} onChange={handleSearchChange}/>
+    <div id="filter" className='w-[300px]'>
+        <div className={clsx(styles.cityWrapper, 'flex mb-3')}>
+            <span className={clsx(styles.filterTitle, '')}>Your city: </span>
+            <input type="text" className={styles.filterInput} value={citySearch} onChange={handleSearchChange}/>
         </div>
         <div className={clsx(styles.daysWrapper, 'flex')}>
-            <span className="">
+            <span className={clsx(styles.filterTitle)}>
                 Number of days: 
             </span>
-            <select className='' onChange={handleNumOfDaysChange}>
+            <select className={styles.filterSelect} onChange={handleNumOfDaysChange}>
                 <option value="3">3 days</option>
                 <option value="3">7 days</option>
                 <option value="3">14 days</option>

@@ -3,5 +3,28 @@
 }
 
 .degree {
-    font-size: 50px;
+    display: flex;
+    font-size: 44px;
+    font-weight: 600;
+    user-select: none;
+}
+.forecastConditionText {
+    font-size: 32px;
+    font-weight: 600;
+    user-select: none;
+    transform: translateY(-24px);
+}
+.forecastParameter {
+
+}
+
+.forecastTitle {
+    @apply text-gray-600 text-base select-none;
+}
+
+.paramText {
+    text-align: center;
+    margin-top: 10px;
+    line-height: 24px;
+    font-size: 18px;
 }

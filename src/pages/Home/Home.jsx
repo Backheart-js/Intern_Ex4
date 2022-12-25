@@ -9,7 +9,7 @@ import Clock from '../../components/Clock/Clock';
 import Forecast from '../../components/Forecast/Forecast';
 import Chart from '../../components/Chart/Chart';
 import SelectDay from '../../components/SelectDay/SelectDay';
-import { filterSelector } from '../../redux/selector';
+import { dataSelector, filterSelector } from '../../redux/selector';
 import filterSlice from '../../redux/slice/filterSlice';
 
 function Home() {
@@ -18,7 +18,6 @@ function Home() {
   const filter = useSelector(filterSelector);
 
   useEffect(() => {
-    console.log(filter);
     const getData = async () => {
       const params = {
         q: filter.city,
@@ -36,20 +35,30 @@ function Home() {
     getData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
-
-
+  
   return (
-    <div className='flex'>
-      <div className={clsx(styles.sidebarWrapper)}>
+    <>
+      <div className="mb-4">
+        <p className="text-center text-5xl font-semibold text-gray-700 select-none">
+          {data.location?.name}
+        </p>
+      </div>
+      <div className="flex">
         <Filter />
-        <Clock />
-        <Forecast /> 
       </div>
-      <div className={styles.maincontentWrapper}>
-        <Chart />
-        <SelectDay />
+      <div className='flex justify-between items-end'>
+        <div className={clsx(styles.sidebarWrapper)}>
+          <div className="">
+            <Clock />
+            <Forecast /> 
+          </div>
+        </div>
+        <div className={styles.maincontentWrapper}>
+          <Chart />
+          <SelectDay />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

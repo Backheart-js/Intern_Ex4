@@ -10,30 +10,33 @@ function Forecast() {
   return (
     <div className=''>
         <div className={styles.forecastCondition}>
-            <div className="flex">
-              <img src={data.condition?.icon} alt="" className="" />
-              <span className={styles.degree}>
-                {data.temp_c}&#x2103;
+            <div className="flex items-center ml-5">
+              <img src={data.condition?.icon} alt="" className="w-[140px] h-[140px]" />
+              <span className={clsx(styles.degree, 'text-gray-800')}>
+                {data.temp_c} 
+                <span className="text-xl pt-2">
+                  &#x2103;
+                </span>
               </span>
             </div>
-            <p className={clsx(styles.forecastConditionText, 'select-none')}>
+            <p className={clsx(styles.forecastConditionText, 'select-none text-center text-gray-800')}>
                 {data.condition?.text}
             </p>
         </div>
-        <div className={clsx(styles.forecastParameter, "flex")}>
+        <div className={clsx(styles.forecastParameter, "flex justify-around px-10 pt-4")}>
           <div className={styles.humidityWrapper}>
             <p className={styles.forecastTitle}>
               Humidity
             </p>
-            <p className="">
-              {data.humidity} %
+            <p className={styles.paramText}>
+              {data.humidity}%
             </p>
           </div>
           <div className={styles.windWrapper}>
             <p className={styles.forecastTitle}>
               Wind speed
             </p>
-            <p className="">
+            <p className={styles.paramText}>
               {data.wind_kph} km/h
             </p>
           </div>
