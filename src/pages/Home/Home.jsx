@@ -10,10 +10,11 @@ import Forecast from '../../components/Forecast/Forecast';
 import Chart from '../../components/Chart/Chart';
 import SelectDay from '../../components/SelectDay/SelectDay';
 import { dataSelector, filterSelector } from '../../redux/selector';
-import filterSlice from '../../redux/slice/filterSlice';
+import Loading from '../../components/Loading/Loading';
 
 function Home() {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch();
   const filter = useSelector(filterSelector);
 
@@ -24,10 +25,14 @@ function Home() {
         days: filter.numberOfDays
       }
       try {
+        setIsLoading(true);
         const response = await weatherAPI.getForecast({params});
         setData(response)
         dispatch(dataSlice.actions.dataChange(response));      
+        setIsLoading(false);
+
       } catch (error) {
+        setIsLoading(false);
         throw error;
       }
     }
@@ -37,7 +42,7 @@ function Home() {
   }, [filter])
   
   return (
-    <>
+    <div className='relative'>
       <div className="mb-4">
         <p className="text-center text-5xl font-semibold text-gray-700 select-none">
           {data.location?.name}
@@ -54,11 +59,17 @@ function Home() {
           </div>
         </div>
         <div className={styles.maincontentWrapper}>
-          <Chart />
+          <div className="mb-4 ml-4">
+            <p className="text-gray-600 text-xl select-none">Temperature chart</p>
+          </div>
+          <Chart typeDataPassProp={'temperature'} />
           <SelectDay />
         </div>
       </div>
-    </>
+      {
+        isLoading && <Loading />
+      }
+    </div>
   )
 }
 

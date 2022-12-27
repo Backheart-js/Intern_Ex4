@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { dataSelector } from '../../redux/selector';
+import { Link } from 'react-router-dom';
+import { dataSelector, filterSelector } from '../../redux/selector';
 import styles from './SelectDay.module.scss'
 
 function SelectDay() {
@@ -17,6 +18,7 @@ function SelectDay() {
 }
 
 function ForecastCard({ data, ...props }) {
+    const { city, numberOfDays } = useSelector(filterSelector);
     const months = [
         "January",
         "February",
@@ -34,7 +36,7 @@ function ForecastCard({ data, ...props }) {
     const dateArr = data.date.split('-');
 
     return (
-        <div className={clsx(styles.selectDay, `basis-1/4 text-gray-800 ${props.index === 0 ? 'bg-[#669bbc] text-white' : ''}`)} {...props}>
+        <Link to={`/details/${city}/${numberOfDays}/${data.date_epoch}`} className={clsx(styles.selectDay, `basis-1/4 text-gray-800 ${props.index === 0 ? 'bg-[#669bbc] text-white' : ''}`)} {...props}>
             <div className="">
                 <p className="">
                     {props.index === 0 ? "Today" : `${months[dateArr[1]-1].slice(0,3)} ${dateArr[2]}`}
@@ -51,7 +53,7 @@ function ForecastCard({ data, ...props }) {
             <p className="">
                 {data.day?.avghumidity} %
             </p>
-        </div>
+        </Link>
     )
 }
 

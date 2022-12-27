@@ -32,8 +32,8 @@ function Clock() {
   useEffect(() => {
     function clock() {
       const d = new Date();
-      const hour = `${d.getHours() < 9 ? "0" + d.getHours() : d.getHours()}:${
-        d.getMinutes() < 9 ? "0" + d.getMinutes() : d.getMinutes()
+      const hour = `${d.getHours() < 10 ? "0" + d.getHours() : d.getHours()}:${
+        d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes()
       }:${d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds()}`;
       const date = `${dayOfWeek[d.getDay()].slice(0, 3)}, ${months[
         d.getMonth()

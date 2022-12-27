@@ -1,0 +1,59 @@
+.chartBtn {
+    position: relative;
+    font-size: 18px;
+    color: #333;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 8px;
+        height: 2px;
+        background-color: #669bbc;
+        transform-origin: bottom right;
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+    &+.chartBtn {
+        // padding-left: 12px;
+        margin-left: 30px;
+        padding: 0 4px;
+
+        &::before {
+            position: absolute;
+            content: "";
+            left: -15px;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #999;
+        }
+    }
+
+    &:hover {
+        &::after {
+            transform-origin: bottom left;
+            transform: scaleX(1);
+          }
+    }
+}
+
+.astroWrapper {
+    position: relative;
+}
+.astroWrapper+.astroWrapper {
+    margin-left: 50px;
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: 6px;
+        height: 6px;
+        left: -28px;
+        background-color: #666;
+        border-radius: 50%;
+    }
+} 
