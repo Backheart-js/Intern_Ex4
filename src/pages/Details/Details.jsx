@@ -1,3 +1,5 @@
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React, { useEffect, useState, useLayoutEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux';
@@ -32,11 +34,15 @@ function Details() {
     () => {
       setisOpenModal(false)
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isOpenModal],
   )
   const handleDBClicks = (hour) => {
     setdataIntoModal(data.forecast.forecastday[index].hour[hour])
     openModal();
+  }
+  const handleBackBtn = () => {
+    window.history.back();
   }
 
   useLayoutEffect(() => {
@@ -70,10 +76,16 @@ function Details() {
       setIndex(index)
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
-  console.log(data);
+
   return (
     <div className='relative'>
+      <div className="py-6 pl-10 mt-14">
+        <button className="w-[60px] h-[60px] hover:bg-slate-100 rounded-full transition-all	duration-300" onClick={handleBackBtn}>
+          <FontAwesomeIcon className='text-2xl text-gray-800' icon={faArrowLeft} />
+        </button>
+      </div>
       <div className="mb-4">
         <p className="text-center text-4xl font-medium select-none">
           {`${data.location?.name} - ${data.location?.country}`}

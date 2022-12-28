@@ -6,23 +6,25 @@ import clsx from 'clsx';
 
 function Modal({ dataPerHour, onClose }) {
     const modalRef = useRef(null);
+    const closeBtnRef = useRef(null);
     const [dataOfModal, setdataOfModal] = useState(dataPerHour)
 
     useEffect(() => {
         modalRef.current.addEventListener('click',(e) => {
             e.stopPropagation()
         });
+        closeBtnRef.current.addEventListener('click', onClose);
 
     }, [])
-    console.log(dataOfModal);
-  return (
+
+    return (
     <div className={styles.overlay} onClick={onClose}>
         <div ref={modalRef} className={styles.modalBox}>
             <div className={styles.modalHeaderWrapper}>
                 <div className="flex justify-center items-center">
                     <span className="text-4xl text-gray-700 select-none">Infomation</span>
                 </div>
-                <button className={styles.closemodalBtn} onClick={onClose}>
+                <button ref={closeBtnRef} className={styles.closemodalBtn}>
                     <FontAwesomeIcon className='text-xl' icon={faXmark} />
                 </button>
             </div>

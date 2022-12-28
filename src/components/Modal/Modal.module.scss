@@ -8,6 +8,7 @@
     left: 0;
     right: 0;
     background-color: rgba($color: #000000, $alpha: .4);
+    animation: layoutOpa .3s ease-in;
     overflow-y: overlay;
 }
 
@@ -16,6 +17,7 @@
     padding: 24px 32px;
     background-color: #fff;
     border-radius: 10px;
+    animation: modalFadeIn .3s ease-in;
 }
 
 .modalHeaderWrapper {
@@ -68,4 +70,24 @@
     flex-direction: column;
     min-width: 140px;
     margin-left: 8px;
+}
+
+@keyframes layoutOpa {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
