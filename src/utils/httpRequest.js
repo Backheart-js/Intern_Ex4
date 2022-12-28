@@ -1,5 +1,4 @@
 import axios from "axios"
-import qs from "qs"
 import apiConfig from "../config/apiConfig"
 
 const httpRequest = axios.create({
