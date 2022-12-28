@@ -1,7 +1,10 @@
 .sidebarWrapper {
-    @apply w-[350px] flex flex-col justify-between;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 
 .maincontentWrapper {
-    @apply w-[730px] 
+    width: 730px;
 }
